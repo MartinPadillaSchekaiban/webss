@@ -158,6 +158,57 @@
     });
   });
 
+
+/**
+ * Demo Section Toggle
+ */
+document.querySelectorAll('.demo-toggle').forEach((toggle) => {
+  toggle.addEventListener('click', () => {
+    const currentItem = toggle.parentNode;
+    const container = currentItem.parentNode;
+    const allItems = container.querySelectorAll('.demo-item');
+    
+    // Close all other items
+    allItems.forEach((item) => {
+      if (item !== currentItem && item.classList.contains('demo-active')) {
+        item.classList.remove('demo-active');
+      }
+    });
+    
+    // Toggle the active state for the clicked item
+    currentItem.classList.toggle('demo-active');
+  });
+});
+
+// JavaScript for toggling demo items
+
+// Get the demo items and the image element
+const demoItems = document.querySelectorAll('.demo-item');
+const demoImage = document.getElementById('demo-image');
+
+// Define an array of image URLs corresponding to each demo item
+const imageUrls = [
+  'assets/img/powerbi1.png',
+  'assets/img/powerbi2.png',
+  'assets/img/powerbi3.png',
+  'assets/img/mobile-panel.jpg',
+  // Add more image URLs for additional items as needed
+];
+
+demoItems.forEach((item, index) => {
+  item.addEventListener('click', () => {
+    // Toggle active class for clicked item
+    demoItems.forEach(i => i.classList.remove('demo-active'));
+    item.classList.add('demo-active');
+
+    // Update the image src based on the clicked item index
+    demoImage.src = imageUrls[index];
+  });
+});
+
+
+
+
   /**
    * Init swiper sliders
    */
@@ -210,3 +261,4 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+
